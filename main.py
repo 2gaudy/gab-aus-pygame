@@ -1,7 +1,42 @@
 import sys, pygame
 from turtle import forward
-pygame.init()
+import json
+import socket
+from time import sleep
 
+name = input("What is your name: ")
+
+pygame.init()
+class Network:
+    def __init__(self):
+        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server = "192.168.4.63"
+        self.port = 5555
+        self.addr = (self.server, self.port)
+        self.id = self.connect()
+        print(self.id)
+
+    def connect(self):
+        try:
+            self.client.connect(self.addr)
+            return self.client.recv(2048).decode()
+        except:
+            pass
+
+    def send(self, data):
+        try:
+            self.client.send(str.encode(data))
+            msg = self.client.recv(2048).decode()
+            print(msg)
+            return msg
+        except socket.error as e:
+            print(e)
+
+client = Network()
+client.connect()
+
+
+#-----------------------------------------------------------------------------
 
 
 clock = pygame.time.Clock()
@@ -79,7 +114,10 @@ while 1:
     print(right)
 
     user_location = ballrect.topleft
-
+    player_status = {
+        name: f"{user_location[0], user_location[1]}"
+    }
+    client.send(json.dumps(player_status))
 #----------------------------
 
 

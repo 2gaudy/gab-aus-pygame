@@ -30,7 +30,7 @@ class Network:
 
 client = Network()
 client.connect()
-player_status = {"Gabriel": "Really Cool"}
+player_status = {"Austin": "Really Awesome"}
 while True:
     sleep(1)
     client.send(json.dumps(player_status))
