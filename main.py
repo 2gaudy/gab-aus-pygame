@@ -15,18 +15,16 @@ black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
+background = pygame.image.load("cow_background.jpg")
+bullet = pygame.image.load("bullet2.jpg")
 ball = pygame.image.load("intro_ball.gif")
+
+user_location = 0
+
 ballrect = ball.get_rect()
 
-players = [{
-    "name":"Gabriel",
-    "right":400,
-    "down":500,
-}, {
-    "name":"Josh",
-    "right":230,
-    "down":562,
-}]
+players = []
+
 
 while 1:
     clock.tick(60)
@@ -49,7 +47,13 @@ while 1:
             if event.key == pygame.K_DOWN:
                 print("down")
                 down = 2
-
+            if event.key == pygame.K_SPACE:
+                print("Space Pressed")
+                bulletrect = bullet.get_rect()
+                bulletrect.x = user_location[0]
+                bulletrect.y = user_location[1]
+                bulletrect.move([right*2, down*2])
+                screen.blit(bullet, bulletrect)
 #-------------------------Listen for movement to stop--------------------------------
 
         if event.type == pygame.KEYUP:
@@ -67,14 +71,24 @@ while 1:
                 down = 0
         
 
+
         
 #----------------------------Move the ball in the current direction-=--------------------------------
 
     ballrect = ballrect.move([right, down])
     print(right)
 
+    user_location = ballrect.topleft
+
+#----------------------------
+
+
+
+
 #----------------------------Rendering other players postions----------------------------------------
-    screen.fill(black)
+    # screen.fill("black")
+
+    screen.blit(background, (0,0))
 
     for player in players:
         player_ballrect = ball.get_rect()
