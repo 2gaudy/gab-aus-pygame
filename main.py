@@ -16,7 +16,7 @@ black = 0, 0, 0
 screen = pygame.display.set_mode(size)
 
 background = pygame.image.load("cow_background.jpg")
-bullet = pygame.image.load("bullet2.jpg")
+
 ball = pygame.image.load("intro_ball.gif")
 
 user_location = 0
