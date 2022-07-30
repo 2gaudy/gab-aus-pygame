@@ -29,16 +29,16 @@ while 1:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 print("left")
-                right = -1
+                right = -2
             if event.key == pygame.K_RIGHT:
                 print("right")
-                right = 1
+                right = 2
             if event.key == pygame.K_UP:
                 print("up")
-                down = -1
+                down = -2
             if event.key == pygame.K_DOWN:
                 print("down")
-                down = 1
+                down = 2
 
 #-------------------------Listen for movement to stop--------------------------------
 
@@ -55,6 +55,7 @@ while 1:
             if event.key == pygame.K_DOWN:
                 print("down up")
                 down = 0
+        
         
 #----------------------------Move the ball in the current direction-=--------------------------------
 
