@@ -17,7 +17,7 @@ screen = pygame.display.set_mode(size)
 
 ball = pygame.image.load("intro_ball.gif")
 ballrect = ball.get_rect()
-
+# This is my new feature
 while 1:
     clock.tick(60)
 
