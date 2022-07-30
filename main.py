@@ -18,6 +18,16 @@ screen = pygame.display.set_mode(size)
 ball = pygame.image.load("intro_ball.gif")
 ballrect = ball.get_rect()
 
+players = [{
+    "name":"Gabriel",
+    "right":400,
+    "down":500,
+}, {
+    "name":"Josh",
+    "right":230,
+    "down":562,
+}]
+
 while 1:
     clock.tick(60)
 
@@ -56,12 +66,23 @@ while 1:
                 print("down up")
                 down = 0
         
+
         
 #----------------------------Move the ball in the current direction-=--------------------------------
 
     ballrect = ballrect.move([right, down])
     print(right)
 
+#----------------------------Rendering other players postions----------------------------------------
+    screen.fill(black)
+
+    for player in players:
+        player_ballrect = ball.get_rect()
+        player_ballrect.x = player["right"]
+        player_ballrect.y = player["down"]
+
+        print(player)
+        screen.blit(ball, player_ballrect)
 
     # ballrect = ballrect.move(speed)
     # if ballrect.left < 0 or ballrect.right > width:
@@ -69,6 +90,6 @@ while 1:
     # if ballrect.top < 0 or ballrect.bottom > height:
     #     speed[1] = -speed[1]
 
-    screen.fill(black)
+    
     screen.blit(ball, ballrect)
     pygame.display.flip()
